@@ -1,9 +1,11 @@
+from producer import Producer
 from flask import Flask, request
 from enum import Enum
 from uuid import uuid4
 from loguru import logger
 from pymongo import MongoClient
 from pymongo.collection import Collection
+import json
 
 CONNECTION_STRING = "mongodb://db-service"
 DB_NAME = 'test-db'
@@ -33,6 +35,13 @@ def root():
     logger.debug('-'*50)
     collection = get_collection()
     collection.insert_one(new_record)
+
+    # data serialization
+    new_record['_id'] = str(new_record['_id'])
+
+    # send event to message queue
+    queue_name = 'events'
+    Producer(queue_name=queue_name).send(message=json.dumps(new_record))
 
     response = {
         'data': [],

@@ -18,5 +18,9 @@ services:
   database:
     container_name: db-service
     image: mongo:5
+  
+  message-queue:
+    container_name: message-service
+    image: rabbitmq:3
 
   
