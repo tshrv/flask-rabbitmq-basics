@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  api-service: 
+    container_name: api-service
+    build:
+      context: api-service
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+  
+  # data-processor: 
+  #   container_name: data-processor
+  #   build:
+  #     context: data-processor
+  #     dockerfile: Dockerfile
+
+  database:
+    container_name: db-service
+    image: mongo:5
+
+  
