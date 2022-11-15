@@ -5,7 +5,7 @@ QUEUE_HOST = 'message-service'
 class Producer:
     def __init__(self, queue_name: str) -> None:
         self.queue_name = queue_name
-        conn_params = ConnectionParameters(host=QUEUE_HOST)
+        conn_params = ConnectionParameters(host=QUEUE_HOST)  # type: ignore
         self.connection = BlockingConnection(conn_params)
         self.channel = self.connection.channel()
         self.channel.queue_declare(self.queue_name)
