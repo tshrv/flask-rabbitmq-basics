@@ -8,16 +8,22 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5000:5000
+    depends_on:
+      - message-queue
   
-  # data-processor: 
-  #   container_name: data-processor
-  #   build:
-  #     context: data-processor
-  #     dockerfile: Dockerfile
+  data-processor: 
+    container_name: data-processor
+    build:
+      context: data-processor
+      dockerfile: Dockerfile
+    depends_on:
+      - message-queue
 
   database:
     container_name: db-service
     image: mongo:5
+    depends_on:
+      - message-queue
   
   message-queue:
     container_name: message-service
