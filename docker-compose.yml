@@ -19,6 +19,14 @@ services:
     depends_on:
       - message-queue
 
+  data-processor-2: 
+    container_name: data-processor-2
+    build:
+      context: data-processor
+      dockerfile: Dockerfile
+    depends_on:
+      - message-queue
+
   database:
     container_name: db-service
     image: mongo:5

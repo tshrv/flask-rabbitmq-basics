@@ -24,7 +24,7 @@ class EventStatus(Enum):
 def process_message(channel, method, properties, body) -> None:
     # simulate delay in processing
     import time
-    time.sleep(2)
+    time.sleep(3)
 
     event = json.loads(body)
     collection = get_collection()

@@ -59,7 +59,7 @@ def create():
         'event_name': event_name,
         'status': EventStatus.PENDING.value,
     }
-    logger.debug(new_record)
+    logger.debug(new_record['uuid'])
     collection = get_collection()
     collection.insert_one(new_record)
 
