@@ -35,6 +35,7 @@ def process_message(channel, method, properties, body) -> None:
     logger.debug(f"{event['uuid']} completed")
 
 def main() -> None:
+    logger.info('listening to message queue')
     queue_name = 'events'
     consumer = Consumer(queue_name=queue_name, callback=process_message)
     consumer.consume()
